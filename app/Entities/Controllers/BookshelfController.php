@@ -86,6 +86,7 @@ class BookshelfController extends Controller
         $this->checkPermission('bookshelf-create-all');
         $validated = $this->validate($request, [
             'name'             => ['required', 'string', 'max:255'],
+            'slug'             => ['string', 'max:255', 'regex:/^[a-zA-Z0-9_-]+$/'],
             'description_html' => ['string', 'max:2000'],
             'image'            => array_merge(['nullable'], $this->getImageValidationRules()),
             'tags'             => ['array'],
@@ -172,6 +173,7 @@ class BookshelfController extends Controller
         $this->checkOwnablePermission('bookshelf-update', $shelf);
         $validated = $this->validate($request, [
             'name'             => ['required', 'string', 'max:255'],
+            'slug'             => ['string', 'max:255', 'regex:/^[a-zA-Z0-9_-]+$/'],
             'description_html' => ['string', 'max:2000'],
             'image'            => array_merge(['nullable'], $this->getImageValidationRules()),
             'tags'             => ['array'],

@@ -29,6 +29,11 @@
                 </div>
             </div>
 
+            <div class="form-group slug-input">
+                <label for="slug">{{ trans('common.slug') }}</label>
+                @include('form.text', ['name' => 'slug'])
+            </div>
+
             <div class="flex-fill flex">
                 {{--Editors--}}
                 <div class="edit-area flex-fill flex">

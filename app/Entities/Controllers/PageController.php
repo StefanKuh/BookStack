@@ -118,6 +118,7 @@ class PageController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
+            'slug' => ['string', 'max:255', 'regex:/^[a-zA-Z0-9_-]+$/'],
         ]);
         $draftPage = $this->queries->findVisibleByIdOrFail($pageId);
         $this->checkOwnablePermission('page-create', $draftPage->getParent());
@@ -219,6 +220,7 @@ class PageController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
+            'slug' => ['string', 'max:255', 'regex:/^[a-zA-Z0-9_-]+$/'],
         ]);
         $page = $this->queries->findVisibleBySlugsOrFail($bookSlug, $pageSlug);
         $this->checkOwnablePermission('page-update', $page);

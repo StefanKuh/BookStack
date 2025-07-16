@@ -42,7 +42,7 @@ class SlugGenerator
      *
      * @param Sluggable&Model $model
      */
-    protected function slugInUse(string $slug, Sluggable $model): bool
+    public function slugInUse(string $slug, Sluggable $model): bool
     {
         $query = $model->newQuery()->where('slug', '=', $slug);
 

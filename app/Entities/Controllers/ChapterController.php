@@ -58,6 +58,7 @@ class ChapterController extends Controller
     {
         $validated = $this->validate($request, [
             'name'                => ['required', 'string', 'max:255'],
+            'slug'                => ['string', 'max:255', 'regex:/^[a-zA-Z0-9_-]+$/'],
             'description_html'    => ['string', 'max:2000'],
             'tags'                => ['array'],
             'default_template_id' => ['nullable', 'integer'],
@@ -122,6 +123,7 @@ class ChapterController extends Controller
     {
         $validated = $this->validate($request, [
             'name'                => ['required', 'string', 'max:255'],
+            'slug'                => ['string', 'max:255', 'regex:/^[a-zA-Z0-9_-]+$/'],
             'description_html'    => ['string', 'max:2000'],
             'tags'                => ['array'],
             'default_template_id' => ['nullable', 'integer'],

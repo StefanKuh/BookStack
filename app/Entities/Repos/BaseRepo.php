@@ -42,7 +42,13 @@ class BaseRepo
             'updated_by' => user()->id,
             'owned_by'   => user()->id,
         ]);
-        $entity->refreshSlug();
+
+        if (empty($input['slug'])) {
+            $entity->refreshSlug();
+        } else {
+            $entity->slug = $input['slug'];
+        }
+
         $entity->save();
 
         if (isset($input['tags'])) {
@@ -66,8 +72,12 @@ class BaseRepo
         $this->updateDescription($entity, $input);
         $entity->updated_by = user()->id;
 
-        if ($entity->isDirty('name') || empty($entity->slug)) {
-            $entity->refreshSlug();
+        if (!empty($input['slug']) && $input['slug'] !== $entity->slug) {
+            $entity->slug = $input['slug'];
+        }
+
+        if (empty($input['slug']) && ($entity->isDirty('name') || empty($entity->slug))) {
+             $entity->refreshSlug();
         }
 
         $entity->save();
